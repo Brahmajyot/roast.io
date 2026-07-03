@@ -4,10 +4,8 @@ export const scrapeWebsite = async (url) => {
   let browser;
 
   try {
-    // 1. The executablePath uses the buildpack's path.
-    // 2. The args are optimized to prevent memory crashes on the Free Tier.
+    // Browser path is auto-detected by Puppeteer since we install it in the build step
     browser = await puppeteer.launch({
-      executablePath: process.env.GOOGLE_CHROME_BIN || '/usr/bin/google-chrome',
       headless: "new",
       args: [
         "--no-sandbox",
@@ -15,7 +13,6 @@ export const scrapeWebsite = async (url) => {
         "--disable-dev-shm-usage",
         "--disable-gpu",
         "--no-zygote",
-        "--single-process", // Highly recommended for memory-constrained environments
         "--disable-extensions",
         "--disable-background-networking",
         "--disable-default-apps",
@@ -33,10 +30,10 @@ export const scrapeWebsite = async (url) => {
     // Navigate to the URL
     await page.goto(url, {
       waitUntil: "domcontentloaded",
-      timeout: 45000, // Reduced slightly to avoid long hangs on Free Tier
+      timeout: 45000,
     });
 
-    // Use Promise.all to fetch data in parallel for speed
+    // Fetch data in parallel
     const [title, description, headings, links, text, images, imagesWithoutAlt] = await Promise.all([
       page.title(),
       page.$eval('meta[name="description"]', (el) => el.content).catch(() => ""),
@@ -53,7 +50,7 @@ export const scrapeWebsite = async (url) => {
       metaDescription: description,
       headings,
       links,
-      text: text.slice(0, 5000), // Slice to save memory
+      text: text.slice(0, 5000),
       textContent: text.slice(0, 5000),
       images,
       imagesWithoutAlt,

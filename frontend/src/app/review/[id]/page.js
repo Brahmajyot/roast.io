@@ -90,7 +90,7 @@ export default function ReviewPage() {
             <h2 className="text-7xl font-black text-orange-500">
               {review.hiringScore}
               <span className="text-3xl text-zinc-500">
-                /10
+                /100
               </span>
             </h2>
           </div>

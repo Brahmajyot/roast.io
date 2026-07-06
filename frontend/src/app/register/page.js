@@ -119,7 +119,7 @@ export default function RegisterPage() {
               onChange={
                 handleChange
               }
-              placeholder="Brahmajyoti"
+              placeholder="Your Name"
               className="w-full bg-zinc-950 border border-zinc-800 px-4 py-4 outline-none focus:border-lime-400 transition"
               required
             />

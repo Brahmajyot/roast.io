@@ -11,7 +11,7 @@ import { toast } from "sonner";
 import {
   Flame,
   LogOut,
-  Home,
+  Home,Loader2
 } from "lucide-react";
 
 import api from "@/lib/axios";
@@ -304,14 +304,19 @@ export default function DashboardPage() {
             </div>
 
             {/* BUTTON */}
-            <button
-              disabled={loading}
-              className="w-full bg-orange-500 hover:bg-orange-600 transition py-5 text-black text-xl font-black uppercase tracking-[0.3em] disabled:opacity-50"
-            >
-              {loading === true
-                ? "Analyzing..."
-                : "Start The Fire"}
-            </button>
+           <button
+  disabled={loading}
+  className="w-full bg-orange-500 hover:bg-orange-600 transition py-5 text-black text-xl font-black uppercase tracking-[0.3em] disabled:opacity-50 flex items-center justify-center gap-3"
+>
+  {loading ? (
+    <>
+      <Loader2 className="animate-spin" size={24} />
+      Analyzing...
+    </>
+  ) : (
+    "Start The Fire"
+  )}
+</button>
           </form>
         </div>
       </div>

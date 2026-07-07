@@ -196,6 +196,7 @@ export default function DashboardPage() {
                 {/* MEDIUM */}
                 <button
                   type="button"
+                  disabled={loading}
                   onClick={() =>
                     setRoastMode(
                       "medium"
@@ -225,6 +226,7 @@ export default function DashboardPage() {
                 {/* WELL DONE */}
                 <button
                   type="button"
+                  disabled={loading}
                   onClick={() =>
                     setRoastMode(
                       "well-done"
@@ -254,6 +256,7 @@ export default function DashboardPage() {
                 {/* BURNT */}
                 <button
                   type="button"
+                  disabled={loading}
                   onClick={() =>
                     setRoastMode(
                       "burnt"

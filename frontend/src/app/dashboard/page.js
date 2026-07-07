@@ -308,7 +308,7 @@ export default function DashboardPage() {
               disabled={loading}
               className="w-full bg-orange-500 hover:bg-orange-600 transition py-5 text-black text-xl font-black uppercase tracking-[0.3em] disabled:opacity-50"
             >
-              {loading
+              {loading === true
                 ? "Analyzing..."
                 : "Start The Fire"}
             </button>
